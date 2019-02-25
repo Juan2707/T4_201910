@@ -10,18 +10,18 @@ import view.MovingViolationsManagerView;
 public class Controller {
 
 	private MovingViolationsManagerView view;
-	
-	// TODO Definir las estructuras de datos para cargar las infracciones del periodo definido
-	
-	// Muestra obtenida de los datos cargados 
+
+	// TODO Definir las estructuras de datos para cargar las infr
+
+	// Muestra obtenida de los datos cargados
 	Comparable<VOMovingViolation> [ ] muestra;
 
-	// Copia de la muestra de datos a ordenar 
+	// Copia de la muestra de datos a ordenar
 	Comparable<VOMovingViolation> [ ] muestraCopia;
 
 	public Controller() {
 		view = new MovingViolationsManagerView();
-		
+
 		//TODO inicializar las estructuras de datos para la carga de informacion de archivos
 	}
 
@@ -29,14 +29,14 @@ public class Controller {
 	 * Leer los datos de las infracciones de los archivos. Cada infraccion debe ser Comparable para ser usada en los ordenamientos.
 	 * Todas infracciones (MovingViolation) deben almacenarse en una Estructura de Datos (en el mismo orden como estan los archivos)
 	 * A partir de estos datos se obtendran muestras para evaluar los algoritmos de ordenamiento
-	 * @return numero de infracciones leidas 
+	 * @return numero de infracciones leidas
 	 */
 	public int loadMovingViolations() {
 		// TODO Los datos de los archivos deben guardarse en la Estructura de Datos definida
-		
+
 		return 0;
 	}
-	
+
 	/**
 	 * Generar una muestra aleatoria de tamaNo n de los datos leidos.
 	 * Los datos de la muestra se obtienen de las infracciones guardadas en la Estructura de Datos.
@@ -46,13 +46,13 @@ public class Controller {
 	public Comparable<VOMovingViolation> [ ] generarMuestra( int n )
 	{
 		muestra = new Comparable[ n ];
-					
+
 		// TODO Llenar la muestra aleatoria con los datos guardados en la estructura de datos
-		
+
 		return muestra;
-		
+
 	}
-	
+
 	/**
 	 * Generar una copia de una muestra. Se genera un nuevo arreglo con los mismos elementos.
 	 * @param muestra - datos de la muestra original
@@ -60,21 +60,21 @@ public class Controller {
 	 */
 	public Comparable<VOMovingViolation> [ ] obtenerCopia( Comparable<VOMovingViolation> [ ] muestra)
 	{
-		Comparable<VOMovingViolation> [ ] copia = new Comparable[ muestra.length ]; 
+		Comparable<VOMovingViolation> [ ] copia = new Comparable[ muestra.length ];
 		for ( int i = 0; i < muestra.length; i++)
 		{    copia[i] = muestra[i];    }
 		return copia;
 	}
-	
+
 	/**
 	 * Ordenar datos aplicando el algoritmo ShellSort
 	 * @param datos - conjunto de datos a ordenar (inicio) y conjunto de datos ordenados (final)
 	 */
 	public void ordenarShellSort( Comparable<VOMovingViolation>[ ] datos ) {
-		
+
 		Sort.ordenarShellSort(datos);
 	}
-	
+
 	/**
 	 * Ordenar datos aplicando el algoritmo MergeSort
 	 * @param datos - conjunto de datos a ordenar (inicio) y conjunto de datos ordenados (final)
@@ -102,24 +102,24 @@ public class Controller {
 
 		// TODO implementar
 	}
-	
+
 	public void run() {
 		long startTime;
 		long endTime;
 		long duration;
-		
+
 		int nDatos = 0;
 		int nMuestra = 0;
-		
+
 		Scanner sc = new Scanner(System.in);
 		boolean fin = false;
-		
+
 		while(!fin)
 		{
 			view.printMenu();
-			
+
 			int option = sc.nextInt();
-			
+
 			switch(option)
 			{
 				case 1:
@@ -127,7 +127,7 @@ public class Controller {
 					nDatos = this.loadMovingViolations();
 					view.printMensage("Numero infracciones cargadas:" + nDatos);
 					break;
-					
+
 				case 2:
 					// Generar muestra de infracciones a ordenar
 					view.printMensage("Dar tamaNo de la muestra: ");
@@ -135,11 +135,11 @@ public class Controller {
 					muestra = this.generarMuestra( nMuestra );
 					view.printMensage("Muestra generada");
 					break;
-					
+
 				case 3:
 					// Mostrar los datos de la muestra actual (original)
 					if ( nMuestra > 0 && muestra != null && muestra.length == nMuestra )
-					{    
+					{
 						view.printDatosMuestra( nMuestra, muestra);
 					}
 					else
@@ -165,7 +165,7 @@ public class Controller {
 						view.printMensage("Muestra invalida");
 					}
 					break;
-					
+
 				case 5:
 					// Aplicar MergeSort a una copia de la muestra
 					if ( nMuestra > 0 && muestra != null && muestra.length == nMuestra )
@@ -183,7 +183,7 @@ public class Controller {
 						view.printMensage("Muestra invalida");
 					}
 					break;
-											
+
 				case 6:
 					// Aplicar QuickSort a una copia de la muestra
 					if ( nMuestra > 0 && muestra != null && muestra.length == nMuestra )
@@ -201,7 +201,7 @@ public class Controller {
 						view.printMensage("Muestra invalida");
 					}
 					break;
-											
+
 				case 7:
 					// Mostrar los datos de la muestra ordenada (muestra copia)
 					if ( nMuestra > 0 && muestraCopia != null && muestraCopia.length == nMuestra )
@@ -211,11 +211,11 @@ public class Controller {
 						view.printMensage("Muestra Ordenada invalida");
 					}
 					break;
-					
-				case 8:	
+
+				case 8:
 					// Una muestra ordenada se convierte en la muestra a ordenar
 					if ( nMuestra > 0 && muestraCopia != null && muestraCopia.length == nMuestra )
-					{    
+					{
 						muestra = muestraCopia;
 						view.printMensage("La muestra ordenada (copia) es ahora la muestra de datos a ordenar");
 					}
@@ -224,7 +224,7 @@ public class Controller {
 				case 9:
 					// Invertir la muestra a ordenar
 					if ( nMuestra > 0 && muestra != null && muestra.length == nMuestra )
-					{    
+					{
 						this.invertirMuestra(muestra);
 						view.printMensage("La muestra de datos a ordenar fue invertida");
 					}
@@ -234,8 +234,8 @@ public class Controller {
 					}
 
 					break;
-					
-				case 10:	
+
+				case 10:
 					fin=true;
 					sc.close();
 					break;
